@@ -1,0 +1,24 @@
+<nav class="row" th:fragment="navbar(includeLogout)">
+    <div class="col-12 pt-2">
+        <ul class="nav nav-tabs">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                   role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                   th:text="${#strings.toUpperCase(#locale)}">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown"
+                     th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                    <!--/*@thymesVar id="lang" type="java.lang.String"*/-->
+                    <a class="dropdown-item" th:each="lang : ${languages}"
+                       th:with="url=${urlBuilder.replaceQueryParam('lang', lang).toUriString()}"
+                       th:href="${url}" th:text="#{'nav.langs.' + ${lang}}">English</a>
+                </div>
+            </li>
+            <li class="nav-item" th:if="${includeLogout}" }>
+                <a href="./index.html" class="nav-link" th:href="@{~/logout}">
+                    <span th:text="#{nav.logout_button}">Log out</span> <i
+                        class="fas fa-sign-out-alt"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>

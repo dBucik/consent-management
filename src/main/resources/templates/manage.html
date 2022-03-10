@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head th:replace="fragments/head :: headerfiles(#{app.title})"></head>
+<body class="container">
+    <nav th:replace="fragments/nav :: navbar(true)"></nav>
+    <header th:replace="fragments/header :: header(#{app.title}, #{app.text})"></header>
+    <main class="row mt-5">
+        <div class="col-12">
+            <h3 th:text="#{management.heading}">Management</h3>
+            <p th:text="#{management.text}">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <table class="col-12 table table-striped table-hover">
+            <thead>
+            <tr class="table-dark">
+                <th scope="col" th:text="#{management.table.service_name}">Service name</th>
+                <th scope="col" th:text="#{management.table.service_description}">Service description</th>
+                <th scope="col" th:text="#{management.table.attributes}">Data released</th>
+                <th scope="col" th:text="#{management.table.actions}" class="text-end pe-3">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="consent : ${consents}" th:with="lang=${#strings.toLowerCase(#locale)}"
+                th:id="${'consent-' + consent.getConsentId() }">
+                <!--/*@thymesVar id="consent" type="cz.muni.ics.cms.web.ui.model.ConsentUi"*/-->
+                <td th:with="langKey=${consent.relyingParty.getName().containsKey(lang) ? lang : 'en' }"
+                    th:text="${consent.relyingParty.getName().get(langKey)}">Bla bla bla name.
+                </td>
+                <td th:with="langKey=${consent.relyingParty.getDescription().containsKey(lang) ? lang : 'en' }"
+                    th:text="${consent.relyingParty.getDescription().get(langKey)}">Bla bla bla desc.
+                </td>
+                <td>
+                    <!--/*@thymesVar id="attribute" type="java.lang.String"*/-->
+                    <ul th:each="attribute : ${consent.attributes}">
+                        <li th:text="#{'management.attribute.' + ${attribute}}">Attribute1</li>
+                    </ul>
+                </td>
+                <td class="text-end pe-3">
+                    <button class="btn btn-danger btn-delete-consent" th:attr="data-consent-id=${consent.getConsentId()}">
+                        <span th:text="#{management.table.withdraw_button}">Withdraw</span> <i class="fas fa-ban"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer th:replace="fragments/footer :: footer"></footer>
+    <!-- JUST SCRIPTS DOWN BELOW -->
+    <script th:replace="fragments/scripts :: scripts(true)"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<head th:fragment="headerfiles(title)">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" type="text/css"
+          th:href="@{~/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../../static/css/all.min.css" type="text/css"
+          th:href="@{~/webjars/font-awesome/css/all.min.css}"/>
+    <link rel="shortcut icon" href="../../static/img/favicon.ico" type="image/x-icon"
+          th:href="@{~/img/favicon.ico}">
+    <title th:text="${title}">Test title</title>
+</head>

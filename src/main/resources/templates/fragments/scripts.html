@@ -1,0 +1,7 @@
+<div th:fragment="scripts(includeWithdraw)">
+    <script src="../static/js/jquery.min.js" type="text/javascript" th:src="@{~/webjars/jquery/jquery.min.js}"></script>
+    <script src="../static/js/bootstrap.bundle.min.js" type="text/javascript"
+            th:src="@{~/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script src="../static/js/withdraw_buttons.js" type="text/javascript" th:if="${includeWithdraw}"
+            th:src="@{~/js/withdraw_buttons.js}"></script>
+</div>
