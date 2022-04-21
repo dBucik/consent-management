@@ -18,7 +18,7 @@ spring:
             redirect-uri: '{baseUrl}/login/oauth2/code/cesnet'
             scope: 'openid'
             client-id: 6d6d5d16-6d42-4d14-8da8-393b7268c780
-            client-secret: TODO-FILL
+            client-secret: AJLezo2Z5rj9SNG_KlAkb_yM7sby3FUozYEkRTPtKLeBD0yfpz33afYLfDWH3JJPRqB7boAPJa9ML5H9TCWhyhU
         provider:
           cesnet:
             issuer-uri: 'https://login.cesnet.cz/oidc/'
